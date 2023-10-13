@@ -11,18 +11,18 @@ export const getOneEmployee = (id) => {
     return axios(`${apiUrl}/employees/${id}`)
 }
 
-// CREATE -> Add employee
-export const createEmployee = (user, newemployee) => {
+// CREATE 
+export const createEmployee = (user, newEmployee) => {
     return axios({
         url: `${apiUrl}/employees`,
         method: 'POST',
         headers: {
             Authorization: `Token token=${user.token}`
         },
-        data: { employee: newemployee }
+        data: { employee: newEmployee }
     })
 }
-// UPDATE -> Change employee
+// UPDATE 
 export const updateEmployee = (user, updatedEmployee) => {
     return axios({
         url: `${apiUrl}/employees/${updatedEmployee._id}`,
@@ -34,7 +34,7 @@ export const updateEmployee = (user, updatedEmployee) => {
     })
 }
 
-// DELETE -> Set a employee free
+// DELETE 
 export const removeEmployee = (user, employeeId) => {
     return axios({
         url: `${apiUrl}/employees/${employeeId}`,

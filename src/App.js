@@ -12,6 +12,8 @@ import SignUp from "./components/auth/SignUp";
 import SignIn from "./components/auth/SignIn";
 import SignOut from "./components/auth/SignOut";
 import ChangePassword from "./components/auth/ChangePassword";
+import ShowEmployee from "./components/employee/ShowEmployee";
+import EmployeeCreate from "./components/employee/CreateEmployee";
 
 const App = () => {
     const [user, setUser] = useState(null);
@@ -73,6 +75,18 @@ const App = () => {
                         </RequireAuth>
                     }
                 />
+				<Route 
+				path='/create-employee'
+				element={
+					<EmployeeCreate user={user} msgAlert={msgAlert}/>
+				}
+				/>
+				<Route 
+				path='employees/:id'
+				element={
+					<ShowEmployee user={user} msgAlert={msgAlert}/>
+				}
+				/>
             </Routes>
             {msgAlerts.map((msgAlert) => (
                 <AutoDismissAlert
