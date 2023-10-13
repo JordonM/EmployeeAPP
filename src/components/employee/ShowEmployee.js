@@ -1,7 +1,10 @@
+
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import LoadingScreen from '../shared/LoadingScreen'
 import EditEmployeeModal from './EditEmployeeModal'
+import NewWageModal from '../wage/NewWageModal'
+import WageShow from '../wage/WageShow'
 import { useNavigate } from 'react-router-dom'
 
 import { Container, Card, Button } from 'react-bootstrap'
@@ -17,16 +20,23 @@ import { showEmployeesFailure, showEmployeesSuccess, removeEmployeeSuccess, remo
 
 
 
+const wageCardContainerLayout = {
+    display: 'flex',
+    justifyContent: 'center',
+    flexFlow: 'row wrap'
+}
+
 const ShowEmployee = (props) => {
     const [employee, setEmployee] = useState(null)
     const [editModalShow, setEditModalShow] = useState(false)
+    const [wageModalShow, setWageModalShow] = useState(false)
     // this is a boolean that we can alter to trigger a page re-render
     const [updated, setUpdated] = useState(false)
 
     const navigate = useNavigate()
 
     // we need to pull the id from the url
-    // localhost:3000/pets/<pet_id>
+    // localhost:3000/employees/<employee_id>
     // to retrieve our id, we can use something from react-router-dom called useParams
     // this is called id, because that's how it is declared in our Route component in App.js
     const { id } = useParams()
@@ -76,7 +86,24 @@ const ShowEmployee = (props) => {
             )
     }
 
-   
+    let wageCards
+    if (employee) {
+        if (employee.wages.length > 0) {
+            wageCards = employee.wages.map(wage => (
+                <WageShow 
+                    key={wage.id}
+                    wage={wage}
+                    msgAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
+                    user={user}
+                    employee={employee}
+                />
+            ))
+        } else {
+            wageCards = <p>Employee has no wages, ain't that sad?</p>
+        }
+    }
+
 
     if(!employee) {
         return <LoadingScreen />
@@ -97,9 +124,12 @@ const ShowEmployee = (props) => {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
+                    <Button className="m-2" variant="info"
+                            onClick={() => setWageModalShow(true)}
+                        >
+                            Give {employee.name} a Wage!
+                        </Button>
                         {
-                            employee.owner && user && employee.owner._id === user._id
-                            ?
                             <>
                                 <Button 
                                     className="m-2" variant="warning"
@@ -114,11 +144,13 @@ const ShowEmployee = (props) => {
                                     Delete
                                 </Button>
                             </>
-                            :
-                            null
+                            
                         }
                     </Card.Footer>
                 </Card>
+            </Container>
+            <Container className='m-2' style={wageCardContainerLayout}>
+                {wageCards}
             </Container>
             <EditEmployeeModal 
                 user={user}
@@ -128,6 +160,13 @@ const ShowEmployee = (props) => {
                 handleClose={() => setEditModalShow(false)}
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 employee={employee}
+            />
+             <NewWageModal 
+                employee={employee}
+                show={wageModalShow}
+                msgAlert={msgAlert}
+                handleClose={() => setWageModalShow(false)}
+                triggerRefresh={() => setUpdated(prev => !prev)}
             />
         </>
     )
