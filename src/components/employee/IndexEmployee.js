@@ -72,6 +72,7 @@ const EmployeesIndex = (props) => {
     ))
 
     return (
+   
         <div className="container-md" style={ cardContainerLayout }>
             { employeeCards }
         </div>

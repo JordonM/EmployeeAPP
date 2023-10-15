@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.navbar {
+  width: auto;
+  height: 100vh;
+  align-items: flex-start;
+  float: left;
+  background-color: black;
+  flex-direction: column;
+}
+.navbar-brand {
+  margin-left: .5rem;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  
+}
+.navbar .container-fluid, 
+.navbar-expand-md .navbar-collapse, 
+.navbar-expand-md .navbar-nav{
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+
+

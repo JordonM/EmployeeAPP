@@ -6,6 +6,8 @@ import EditEmployeeModal from './EditEmployeeModal'
 import NewWageModal from '../wage/NewWageModal'
 import WageShow from '../wage/WageShow'
 import { useNavigate } from 'react-router-dom'
+import NewFeedbackModal from '../feedback/NewFeedbackModal'
+import FeedbackShow from '../feedback/FeedbackShow'
 
 import { Container, Card, Button } from 'react-bootstrap'
 
@@ -30,6 +32,7 @@ const ShowEmployee = (props) => {
     const [employee, setEmployee] = useState(null)
     const [editModalShow, setEditModalShow] = useState(false)
     const [wageModalShow, setWageModalShow] = useState(false)
+    const [feedbackModalShow, setFeedbackModalShow] = useState(false)
     // this is a boolean that we can alter to trigger a page re-render
     const [updated, setUpdated] = useState(false)
 
@@ -110,7 +113,8 @@ const ShowEmployee = (props) => {
     }
 
     return (
-        <>
+        <>  
+            <div className="row">
             <Container className='m-2'>
                 <Card>
                     <Card.Header>{ employee.fullTitle }</Card.Header>
@@ -146,6 +150,11 @@ const ShowEmployee = (props) => {
                             </>
                             
                         }
+                    <Button className="m-2" variant="info"
+                            onClick={() => setFeedbackModalShow(true)}
+                        >
+                            Give {employee.name} some Feedback!
+                        </Button>
                     </Card.Footer>
                 </Card>
             </Container>
@@ -168,6 +177,14 @@ const ShowEmployee = (props) => {
                 handleClose={() => setWageModalShow(false)}
                 triggerRefresh={() => setUpdated(prev => !prev)}
             />
+             <NewFeedbackModal 
+                employee={employee}
+                show={feedbackModalShow}
+                msgAlert={msgAlert}
+                handleClose={() => setFeedbackModalShow(false)}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+            />
+            </div>
         </>
     )
 }

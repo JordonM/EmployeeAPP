@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom'
+import '../../index.css';
 const linkStyle = {
     color: 'white',
     textDecoration: 'none'
@@ -56,7 +57,7 @@ const Header = ({ user }) => (
         </Navbar.Brand>
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
 		<Navbar.Collapse id='basic-navbar-nav'>
-			<Nav className='ml-auto'>
+			<Nav className='nav flex-column'>
 				{user && (
 					<span className='navbar-text mr-2'>Welcome, {user.email}</span>
 				)}

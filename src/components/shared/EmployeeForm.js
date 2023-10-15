@@ -7,6 +7,7 @@ const EmployeeForm = (props) => {
     const { employee, handleChange, handleSubmit, heading } = props
 
     return (
+        <div className="row">
         <Container className="justify-content-center">
             <h3>{heading}</h3>
             <Form onSubmit={handleSubmit}>
@@ -52,6 +53,7 @@ const EmployeeForm = (props) => {
                 <Button className="m-2" type="submit">Submit</Button>
             </Form>
         </Container>
+        </div>
     )
 
 }
