@@ -12,12 +12,12 @@ const WageForm = (props) => {
     return (
         <div className="row">
         <Container className="justify-content-center">
-            <h3>{heading}</h3>
+            <h3>Employee Pay Form:</h3>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="m-2">
-                    <Form.Label>Name:</Form.Label>
+                    <Form.Label>Job Positon:</Form.Label>
                     <Form.Control 
-                        placeholder="What is the wage's name?"
+                        placeholder="What is their job position?"
                         id="name"
                         name="name"
                         value={ wage.name }
@@ -25,9 +25,9 @@ const WageForm = (props) => {
                     />
                 </Form.Group>
                 <Form.Group className="m-2">
-                    <Form.Label>Frequency</Form.Label>
+                    <Form.Label>Pay Amount:</Form.Label>
                     <Form.Control 
-                        placeholder="What kind of wage is this?"
+                        placeholder="What is the amount?"
                         id="frequency"
                         name="frequency"
                         value={ wage.frequency }
@@ -36,7 +36,7 @@ const WageForm = (props) => {
                 </Form.Group>
                 <Form.Group className="m-2">
                     <Form.Check 
-                        label="Is this wage squeaky?"
+                        label="Did the employee use PTO?"
                         name="isSqueaky"
                         defaultChecked={ wage.isSqueaky }
                         onChange={handleChange}
@@ -49,13 +49,13 @@ const WageForm = (props) => {
                         defaultValue={ wage.condition }
                         onChange={handleChange}
                     >
-                        <option>Open this select menu</option>
-                        <option value="new">new</option>
-                        <option value="used">used</option>
-                        <option value="disgusting">disgusting</option>
+                        <option>Choose A Pay Period</option>
+                        <option value="new">Weekly</option>
+                        <option value="used">Bi-Weekly</option>
+                        <option value="disgusting">Monthly</option>
                     </Form.Select>
                 </Form.Group>
-                <Button className="m-2" type="submit">Submit</Button>
+                <Button className="m-2" type="submit" variant="success">Submit</Button>
             </Form>
         </Container>
         </div>

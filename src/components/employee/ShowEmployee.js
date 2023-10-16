@@ -27,6 +27,11 @@ const wageCardContainerLayout = {
     justifyContent: 'center',
     flexFlow: 'row wrap'
 }
+const feedbackCardContainerLayout = {
+    display: 'flex',
+    justifyContent: 'center',
+    flexFlow: 'row'
+}
 
 const ShowEmployee = (props) => {
     const [employee, setEmployee] = useState(null)
@@ -59,7 +64,7 @@ const ShowEmployee = (props) => {
             .then(res => setEmployee(res.data.employee))
             .catch(err => {
                 msgAlert({
-                    heading: 'Error getting employee',
+                    heading: 'Error getting employees.',
                     message: showEmployeesFailure,
                     variant: 'danger'
                 })
@@ -72,7 +77,7 @@ const ShowEmployee = (props) => {
             // send a success message
             .then(() =>
                 msgAlert({
-                    heading: `${employee.name} has been set free!`,
+                    heading: `${employee.name} has been terminated.`,
                     message: removeEmployeeSuccess,
                     variant: 'success',
                 })
@@ -82,7 +87,7 @@ const ShowEmployee = (props) => {
             // send a fail message if there is an error
             .catch(() =>
                 msgAlert({
-                    heading: 'Oh no!',
+                    heading: 'There has been an error with termination.',
                     message: removeEmployeeFailure,
                     variant: 'danger',
                 })
@@ -103,35 +108,52 @@ const ShowEmployee = (props) => {
                 />
             ))
         } else {
-            wageCards = <p>Employee has no wages, ain't that sad?</p>
+            wageCards = <p>Select a button to manage employees.</p>
         }
     }
-
 
     if(!employee) {
         return <LoadingScreen />
     }
 
+    let feedbackCards
+    if (employee) {
+        if (employee.feedbacks.length > 0) {
+            feedbackCards = employee.feedbacks.map(feedback => (
+                <FeedbackShow 
+                    key={feedback.id}
+                    feedback={feedback}
+                    msgAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
+                    user={user}
+                    employee={employee}
+                />
+            ))
+        } else {
+            feedbackCards = <p>Employee has not been paid.</p>
+        }
+    }
+
     return (
         <>  
             <div className="row">
-            <Container className='m-2'>
+            <Container className='m-2' variant="light">
                 <Card>
-                    <Card.Header>{ employee.fullTitle }</Card.Header>
+                    <Card.Header>{ employee.name }</Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <small>dob: {employee.dob}</small><br/>
-                            <small>position: {employee.position}</small><br/>
+                            <small>Age: {employee.dob}</small><br/>
+                            <small>Position: {employee.position}</small><br/>
                             <small>
-                                Paid: {employee.paid ? 'yes' : 'no'}
+                                Part-Time: {employee.paid ? 'yes' : 'no'}
                             </small><br/>
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                    <Button className="m-2" variant="info"
+                    <Button className="m-2" variant="dark"
                             onClick={() => setWageModalShow(true)}
                         >
-                            Give {employee.name} a Wage!
+                            Give {employee.name} a Paycheck!
                         </Button>
                         {
                             <>
@@ -150,7 +172,7 @@ const ShowEmployee = (props) => {
                             </>
                             
                         }
-                    <Button className="m-2" variant="info"
+                    <Button className="m-2" variant="dark"
                             onClick={() => setFeedbackModalShow(true)}
                         >
                             Give {employee.name} some Feedback!
@@ -160,6 +182,9 @@ const ShowEmployee = (props) => {
             </Container>
             <Container className='m-2' style={wageCardContainerLayout}>
                 {wageCards}
+            </Container>
+            <Container className='m-2' style={feedbackCardContainerLayout}>
+                {feedbackCards}
             </Container>
             <EditEmployeeModal 
                 user={user}

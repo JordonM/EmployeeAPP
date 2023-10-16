@@ -86,7 +86,7 @@ const EmployeeCreate = (props) => {
             employee={employee} 
             handleChange={onChange}
             handleSubmit={onSubmit}
-            heading="Add a new employee!"
+            heading="Add A New Employee!"
         />
     )
 }

@@ -47,7 +47,7 @@ const NewWageModal = (props) => {
             // send a success message
             .then(() => {
                 msgAlert({
-                    heading: 'Oh yeah!',
+                    heading: 'Paycheck created!',
                     message: createWageSuccess,
                     variant: 'success'
                 })
@@ -56,7 +56,7 @@ const NewWageModal = (props) => {
             // if anything goes wrong, send an error message
             .catch(() => {
                 msgAlert({
-                    heading: 'Oh no!',
+                    heading: 'There has been an error!',
                     message: createWageFailure,
                     variant: 'danger'
                 })
@@ -71,7 +71,7 @@ const NewWageModal = (props) => {
                     wage={wage}
                     handleChange={onChange}
                     handleSubmit={onSubmit}
-                    heading={`Give ${employee.name} a wage!`}
+                    heading={`Give ${employee.name} a paycheck!`}
                 />
             </Modal.Body>
         </Modal>

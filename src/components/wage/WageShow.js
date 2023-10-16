@@ -18,13 +18,22 @@ const WageShow = (props) => {
         // a wage can either be new, used, or disgusting
         if (cond === 'new') {
             return({width: '18rem', backgroundColor: '#b5ead7'})
-        } else if (cond === 'used') {
+        } else if (cond === 'disgusting') {
             return({width: '18rem', backgroundColor: '#ffdac1'})
         } else {
             return({width: '18rem', backgroundColor: '#ff9aa2'})
         }
     }
-
+    const setWageCondition = (cond) => {
+        // a wage can either be new, used, or disgusting
+        if (cond === 'new') {
+            return('Weekly')
+        } else if (cond === 'disgusting') {
+            return('Bi-Weekly')
+        } else {
+            return('Monthly')
+        }
+    }    
     const destroyWage = () => {
         // we want to remove the employee
         removeWage(user, employee._id, wage._id)
@@ -54,10 +63,13 @@ const WageShow = (props) => {
                 <Card.Header>{wage.name}</Card.Header>
                 <Card.Body>
                     <small>{wage.description}</small><br/>
-                    <small>{wage.isSqueaky ? 'squeak squeak' : 'stoic silence'}</small><br/>
+                    <small>{wage.isSqueaky ? 'PTO Used' : 'PTO Unused'}</small><br/>
+                    <small>${wage.frequency}</small>
                 </Card.Body>
                 <Card.Footer>
-                    <small>Condition: {wage.condition}</small><br/>
+                    <small>
+                    {setWageCondition(wage.condition)}
+                    </small><br/>
                     {
                         user && employee.owner && user._id === employee.owner._id
                         ?

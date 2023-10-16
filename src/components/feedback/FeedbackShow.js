@@ -53,11 +53,9 @@ const FeedbackShow = (props) => {
             <Card className='m-2' style={setBgCondition(feedback.condition)}>
                 <Card.Header>{feedback.name}</Card.Header>
                 <Card.Body>
-                    <small>{feedback.description}</small><br/>
-                    <small>{feedback.isSqueaky ? 'squeak squeak' : 'stoic silence'}</small><br/>
+                    <small>{feedback.comment}</small><br/>
                 </Card.Body>
                 <Card.Footer>
-                    <small>Condition: {feedback.condition}</small><br/>
                     {
                         user && employee.owner && user._id === employee.owner._id
                         ?

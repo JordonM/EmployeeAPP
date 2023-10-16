@@ -2,6 +2,8 @@
 // the action will be dependent upon the parent component(create or update)
 // however, the form will look the same on both pages.
 import { Form, Button, Container } from 'react-bootstrap'
+import EmployeeCreate from '../employee/CreateEmployee'
+
 
 const FeedbackForm = (props) => {
     // we need several props for a working, reusable form
@@ -12,19 +14,19 @@ const FeedbackForm = (props) => {
     return (
         <div className="row">
         <Container className="justify-content-center">
-            <h3>{heading}</h3>
+            <h3> Give Employee Some Feedback. </h3>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="m-2">
                     <Form.Label>Comment:</Form.Label>
                     <Form.Control 
-                        placeholder="What is the feedback's name?"
+                        placeholder="Enter A Comment"
                         id="comment"
                         name="comment"
                         value={ feedback.comment }
                         onChange={handleChange}
                     />
                 </Form.Group>
-                <Button className="m-2" type="submit">Submit</Button>
+                <Button className="m-2" type="submit" variant="success">Submit</Button>
             </Form>
         </Container>
         </div>

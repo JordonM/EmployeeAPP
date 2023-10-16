@@ -32,7 +32,7 @@ const EmployeeForm = (props) => {
                     />
                 </Form.Group>
                 <Form.Group className="m-2">
-                    <Form.Label>DOB:</Form.Label>
+                    <Form.Label>Age:</Form.Label>
                     <Form.Control 
                         type="number"
                         placeholder="How old is your employee?"
@@ -44,13 +44,13 @@ const EmployeeForm = (props) => {
                 </Form.Group>
                 <Form.Group className="m-2">
                     <Form.Check 
-                        label="Is this employee paid?"
+                        label="Is this employee Part Time?"
                         name="paid"
                         defaultChecked={ employee.paid }
                         onChange={handleChange}
                     />
                 </Form.Group>
-                <Button className="m-2" type="submit">Submit</Button>
+                <Button className="m-2" type="submit" variant="success">Submit</Button>
             </Form>
         </Container>
         </div>

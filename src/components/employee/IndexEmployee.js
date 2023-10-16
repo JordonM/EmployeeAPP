@@ -57,15 +57,15 @@ const EmployeesIndex = (props) => {
 
     const employeeCards = employees.map(employee => (
         <Card key={ employee.id } style={{ width: '30%', margin: 5 }}>
-            <Card.Header>{ employee.fullTitle }</Card.Header>
+            <Card.Header>{ employee.name }</Card.Header>
             <Card.Body>
                 <Card.Text>
-                    <Link to={`/employees/${employee.id}`} className='btn btn-info'>
+                    <Link to={`/employees/${employee.id}`} className='btn btn-dark'>
                         View { employee.name }
                     </Link>
                 </Card.Text>
                 { employee.owner ? 
-                    <Card.Footer>owner: {employee.owner.email}</Card.Footer>
+                    <Card.Footer></Card.Footer>
                 : null }
             </Card.Body>
         </Card>

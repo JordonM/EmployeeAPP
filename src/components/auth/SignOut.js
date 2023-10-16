@@ -20,7 +20,7 @@ const SignOut = (props) => {
 					variant: 'success',
 				})
 			)
-			.finally(() => navigate('/'))
+			.finally(() => navigate('/sign-up'))
 			.finally(() => clearUser())
     }
 
@@ -32,8 +32,7 @@ const SignOut = (props) => {
 		<>
             <div className='row'>
                 <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-                    <h2>Are you sure you want to sign out?</h2>
-                    <small>We hate to see you go...</small><br/>
+                    <h2>Are You Sure You Want To Sign Out?</h2>
                     <ButtonGroup>
                         <Button variant='danger' onClick={onSignOut}>
                             Sign Out
