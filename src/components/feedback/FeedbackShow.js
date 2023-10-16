@@ -7,15 +7,11 @@ import EditFeedbackModal from './EditFeedbackModal'
 const FeedbackShow = (props) => {
     const { feedback, msgAlert, triggerRefresh, user, employee } = props
 
-    // hook/piece of state that displays the editfeedbackModal
+   
     const [editModalShow, setEditModalShow] = useState(false)
 
-    // we're going to build a function that reads the feedback's condition
-    // then sets a style based on that condition
-    // we'll just change the background color, but you can really do anything
-    // we'll return and pass the results of this function to an inline style
     const setBgCondition = (cond) => {
-        // a feedback can either be new, used, or disgusting
+        
         if (cond === 'new') {
             return({width: '18rem', backgroundColor: '#b5ead7'})
         } else if (cond === 'used') {

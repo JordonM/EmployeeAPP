@@ -3,10 +3,10 @@ import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import LoadingScreen from '../shared/LoadingScreen'
 
-// api function call from our api file
+
 import { getAllEmployees } from '../../api/employee'
 
-// we need our messages from the autodismiss alert messaged file
+
 import messages from '../shared/AutoDismissAlert/messages'
 
 const cardContainerLayout = {
@@ -21,13 +21,11 @@ const EmployeesIndex = (props) => {
 
     const { msgAlert } = props
 
-    // useEffect takes two arguments
-    // first a callback function
-    // second a 'dependency array'
+ 
     useEffect(() => {
         getAllEmployees()
             .then(res => {
-                // console.log('the employees?', res.data.employees)
+               
                 setEmployees(res.data.employees)
             })
             .catch(err => {
@@ -40,20 +38,19 @@ const EmployeesIndex = (props) => {
             })
     }, [])
 
-    // we need to account for multiple potential states of our data
-    // if we have an error
+ 
     if (error) {
         return <LoadingScreen />
     }
 
-    // if the employees aren't even loaded yet
+    
     if (!employees) {
         return <LoadingScreen />
-    // if we have NO employees
+   
     } else if (employees.length === 0) {
         return <p>No employees yet, go add some!</p>
     }
-    // console.log('the employees in employeesIndex', employees)
+    
 
     const employeeCards = employees.map(employee => (
         <Card key={ employee.id } style={{ width: '30%', margin: 5 }}>
@@ -79,5 +76,5 @@ const EmployeesIndex = (props) => {
     )
 }
 
-// export our component
+
 export default EmployeesIndex

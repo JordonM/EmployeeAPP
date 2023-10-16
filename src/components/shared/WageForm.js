@@ -1,12 +1,8 @@
-// this form will take several props, and be used by both Create and Update
-// the action will be dependent upon the parent component(create or update)
-// however, the form will look the same on both pages.
+
 import { Form, Button, Container } from 'react-bootstrap'
 
 const WageForm = (props) => {
-    // we need several props for a working, reusable form
-    // we need the object itself(pet), a handleChange, a handleSubmit
-    // sometimes it's nice to have a custom heading (to diff b/w our components)
+   
     const { wage, handleChange, handleSubmit, heading } = props
 
     return (

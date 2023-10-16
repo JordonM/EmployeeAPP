@@ -11,14 +11,12 @@ import FeedbackShow from '../feedback/FeedbackShow'
 
 import { Container, Card, Button } from 'react-bootstrap'
 
-// we'll need to import an api function to grab an individual employee
+
 import { getOneEmployee, updateEmployee, removeEmployee } from '../../api/employee'
 
 import { showEmployeesFailure, showEmployeesSuccess, removeEmployeeSuccess, removeEmployeeFailure } from '../shared/AutoDismissAlert/messages'
 
-// we're going to use route parameters to get the id of the employee we're trying to retrieve from the server.
-// then we use that id with our api call function
-// when we finally retrieve the employee, render the details on the screen
+
 
 
 
@@ -38,27 +36,16 @@ const ShowEmployee = (props) => {
     const [editModalShow, setEditModalShow] = useState(false)
     const [wageModalShow, setWageModalShow] = useState(false)
     const [feedbackModalShow, setFeedbackModalShow] = useState(false)
-    // this is a boolean that we can alter to trigger a page re-render
+   
     const [updated, setUpdated] = useState(false)
 
     const navigate = useNavigate()
 
-    // we need to pull the id from the url
-    // localhost:3000/employees/<employee_id>
-    // to retrieve our id, we can use something from react-router-dom called useParams
-    // this is called id, because that's how it is declared in our Route component in App.js
+  
     const { id } = useParams()
     const { user, msgAlert } = props
 
-    // useEffect takes two arguments
-    // the callback function
-    // the dependency array
-    // the dependency array determines when useEffect gets called
-    // if any piece of state inside the dependency array changes
-    // this triggers the useEffect to run the callback function again
-    // NEVER EVER EVER EVER EVER EVER EVER put a piece of state in the dependency array that gets updated by the useEffect callback function
-    // doing this causes an infinite loop
-    // react will kill your application if this happens
+
     useEffect(() => {
         getOneEmployee(id)
             .then(res => setEmployee(res.data.employee))
@@ -72,9 +59,9 @@ const ShowEmployee = (props) => {
     }, [updated])
 
     const setEmployeeFree = () => {
-        // we want to remove the employee
+
         removeEmployee(user, employee._id)
-            // send a success message
+     
             .then(() =>
                 msgAlert({
                     heading: `${employee.name} has been terminated.`,
@@ -82,9 +69,9 @@ const ShowEmployee = (props) => {
                     variant: 'success',
                 })
             )
-            // navigate the user to the home page(index)
+
             .then(() => navigate('/'))
-            // send a fail message if there is an error
+          
             .catch(() =>
                 msgAlert({
                     heading: 'There has been an error with termination.',
@@ -108,7 +95,7 @@ const ShowEmployee = (props) => {
                 />
             ))
         } else {
-            wageCards = <p>Select a button to manage employees.</p>
+            wageCards = <p>Select a button to pay employee.</p>
         }
     }
 
@@ -130,7 +117,7 @@ const ShowEmployee = (props) => {
                 />
             ))
         } else {
-            feedbackCards = <p>Employee has not been paid.</p>
+            feedbackCards = <p>Select a button to add a comment.</p>
         }
     }
 

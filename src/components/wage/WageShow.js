@@ -7,15 +7,12 @@ import EditWageModal from './EditWageModal'
 const WageShow = (props) => {
     const { wage, msgAlert, triggerRefresh, user, employee } = props
 
-    // hook/piece of state that displays the editwageModal
+   
     const [editModalShow, setEditModalShow] = useState(false)
 
-    // we're going to build a function that reads the wage's condition
-    // then sets a style based on that condition
-    // we'll just change the background color, but you can really do anything
-    // we'll return and pass the results of this function to an inline style
+  
     const setBgCondition = (cond) => {
-        // a wage can either be new, used, or disgusting
+      
         if (cond === 'new') {
             return({width: '18rem', backgroundColor: '#b5ead7'})
         } else if (cond === 'disgusting') {
@@ -25,7 +22,7 @@ const WageShow = (props) => {
         }
     }
     const setWageCondition = (cond) => {
-        // a wage can either be new, used, or disgusting
+      
         if (cond === 'new') {
             return('Weekly')
         } else if (cond === 'disgusting') {
@@ -35,9 +32,9 @@ const WageShow = (props) => {
         }
     }    
     const destroyWage = () => {
-        // we want to remove the employee
+       
         removeWage(user, employee._id, wage._id)
-            // send a success message
+           
             .then(() =>
                 msgAlert({
                     heading: `Wage Deleted!`,
@@ -47,7 +44,7 @@ const WageShow = (props) => {
             )
             // triggerRefresh
             .then(() => triggerRefresh())
-            // send a fail message if there is an error
+            
             .catch(() =>
                 msgAlert({
                     heading: 'Oh no!',

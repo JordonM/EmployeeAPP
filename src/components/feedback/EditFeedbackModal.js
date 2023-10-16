@@ -1,14 +1,10 @@
-// this modal is rendered by feedbackShow component
-// the state that controls this modal, whether the modal is open or not will live in the feedbackShow component
-// the state AND the updaterfunction associated with that state is passed here as a prop
 
 import { useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import FeedbackForm from '../shared/FeedbackForm'
 import { updateFeedbackSuccess, updateFeedbackFailure } from '../shared/AutoDismissAlert/messages'
 import { updateFeedback } from '../../api/feedback'
-// this modal has its own props that it needs in order to open and close
-// since we will be using the feedbackForm as well, we'll need those props
+
 
 const EditFeedbackModal = (props) => {
     const { user, employee, show, handleClose, msgAlert, triggerRefresh } = props

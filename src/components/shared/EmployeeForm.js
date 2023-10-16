@@ -1,9 +1,7 @@
 import { Form, Button, Container } from 'react-bootstrap'
 
 const EmployeeForm = (props) => {
-    // we need several props for a working, reusable form
-    // we need the object itself(employee), a handleChange, a handleSubmit
-    // sometimes it's nice to have a custom heading (to diff b/w our components)
+   
     const { employee, handleChange, handleSubmit, heading } = props
 
     return (

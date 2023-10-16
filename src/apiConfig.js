@@ -1,7 +1,7 @@
 let apiUrl
 const apiUrls = {
-    // YOU MUST CHANGE PRODUCTION URL WHEN DEPLOYING
-	production: 'https://employeeapi.fly.dev',
+    
+	production: 'https://employeeapi-04a2.onrender.com',
 	development: 'http://localhost:8000',
 }
 
